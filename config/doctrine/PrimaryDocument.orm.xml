@@ -1,0 +1,25 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://symfony.com/schema/dic/doctrine/doctrine-1.0.xsd">
+
+    <!-- Реализует сущность любого первичного документа. -->
+    <entity name="Maris\Symfony\DocumentFlow\Entity\PrimaryDocument" table="primary_documents" inheritance-type="SINGLE_TABLE">
+
+        <discriminator-column name="view" type="integer" />
+
+        <discriminator-map>
+            <discriminator-mapping value="0" class="Maris\Symfony\DocumentFlow\Entity\PaymentInvoice"/>
+            <discriminator-mapping value="1" class="Maris\Symfony\DocumentFlow\Entity\PrimaryDocument"/>
+        </discriminator-map>
+
+
+        <id name="id" type="integer" column="id">
+            <generator/>
+            <options>
+                <option name="unsigned">true</option>
+            </options>
+        </id>
+
+    </entity>
+</doctrine-mapping>
