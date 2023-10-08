@@ -28,7 +28,7 @@ use RuntimeException;
 #[Table(name: 'primary_documents')]
 #[InheritanceType('SINGLE_TABLE')]
 #[DiscriminatorColumn(name: 'document_type',type: 'integer')]
-#[DiscriminatorMap([ AcceptanceCertificate::class, PaymentInvoice::class ])]
+#[DiscriminatorMap([ PrimaryDocument::class ,AcceptanceCertificate::class, PaymentInvoice::class ])]
 abstract class PrimaryDocument
 {
     /***

@@ -1463,16 +1463,16 @@
         },
         {
             "name": "maris/symfony-company-bundle",
-            "version": "0.0.2",
+            "version": "0.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/n-marisov/symfony-company-bundle.git",
-                "reference": "5248f818a5404a0dbc58c30d126405b01f153bdd"
+                "reference": "952e66499bd5aea3a5c28a762420c4a3671265b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/n-marisov/symfony-company-bundle/zipball/5248f818a5404a0dbc58c30d126405b01f153bdd",
-                "reference": "5248f818a5404a0dbc58c30d126405b01f153bdd",
+                "url": "https://api.github.com/repos/n-marisov/symfony-company-bundle/zipball/952e66499bd5aea3a5c28a762420c4a3671265b9",
+                "reference": "952e66499bd5aea3a5c28a762420c4a3671265b9",
                 "shasum": ""
             },
             "require": {
@@ -1502,9 +1502,9 @@
             "description": "Пакет добавляет возможность сохранения адресов.",
             "support": {
                 "issues": "https://github.com/n-marisov/symfony-company-bundle/issues",
-                "source": "https://github.com/n-marisov/symfony-company-bundle/tree/v0.0.2"
+                "source": "https://github.com/n-marisov/symfony-company-bundle/tree/v0.0.3"
             },
-            "time": "2023-10-07T18:39:39+00:00"
+            "time": "2023-10-08T14:19:47+00:00"
         },
         {
             "name": "maris/symfony-geo-embeddable-model-bundle",
