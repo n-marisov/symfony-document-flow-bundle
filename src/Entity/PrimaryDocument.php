@@ -80,7 +80,6 @@ abstract class PrimaryDocument
      * Список оказанных услуг.
      * @var Collection<PaidService>
      */
-    #[OneToMany(targetEntity: PaidService::class,cascade: ['persist'])]
     protected Collection $services;
 
 
