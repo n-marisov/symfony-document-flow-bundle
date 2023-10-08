@@ -212,7 +212,7 @@ abstract class PrimaryDocument
      */
     public function setServices(Collection $services): self
     {
-        if(!$services->forAll((new CurrencyFullPredicate($services->first()->getCurrency()))(...)) )
+        if(!$services->forAll((new CurrencyFullPredicate($this->currency))(...)) )
             throw new RuntimeException("Первичный документ не может иметь услуги с разными валютами.");
 
         $this->services = $services;
@@ -226,7 +226,7 @@ abstract class PrimaryDocument
     public function getTotal():Money
     {
         return $this->getServices()
-            ->reduce( fn( PaidService $accumulator , PaidService $item) => $accumulator->getTotal()->add( $item->getTotal() ), new Money(0,$this->currency));
+            ->reduce( fn( Money $accumulator , PaidService $item) => $accumulator->add( $item->getTotal() ), new Money(0,$this->currency));
     }
 
 }
