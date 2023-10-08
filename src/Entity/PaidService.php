@@ -32,7 +32,7 @@ class PaidService
      * Акт выполненных работ
      * @var AcceptanceCertificate|null
      */
-    #[ManyToOne(targetEntity: AcceptanceCertificate::class,cascade: ['persists'])]
+    #[ManyToOne(targetEntity: AcceptanceCertificate::class,cascade: ['persist'])]
     #[JoinColumn(name: 'certificate_id')]
     private ?AcceptanceCertificate $certificate = null;
 
@@ -40,7 +40,7 @@ class PaidService
      * Счет-фактура.
      * @var PaymentInvoice|null
      */
-    #[ManyToOne(targetEntity: PaymentInvoice::class,cascade: ['persists'])]
+    #[ManyToOne(targetEntity: PaymentInvoice::class,cascade: ['persist'])]
     #[JoinColumn(name: 'invoice_id')]
     private ?PaymentInvoice $invoice = null;
 

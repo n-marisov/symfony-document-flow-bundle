@@ -43,7 +43,7 @@ abstract class PrimaryDocument
      * Заказчик
      * @var Business
      */
-    #[ManyToOne(targetEntity: Business::class,cascade: ['persists'])]
+    #[ManyToOne(targetEntity: Business::class,cascade: ['persist'])]
     #[JoinColumn(name: 'employer_id',nullable: false)]
     protected Business $employer;
 
@@ -51,7 +51,7 @@ abstract class PrimaryDocument
      * Исполнитель
      * @var Business
      */
-    #[ManyToOne(targetEntity: Business::class,cascade: ['persists'])]
+    #[ManyToOne(targetEntity: Business::class,cascade: ['persist'])]
     #[JoinColumn(name: 'executor_id',nullable: false)]
     protected Business $executor;
 
@@ -80,7 +80,7 @@ abstract class PrimaryDocument
      * Список оказанных услуг.
      * @var Collection<PaidService>
      */
-    #[OneToMany(targetEntity: PaidService::class,cascade: ['persists'])]
+    #[OneToMany(targetEntity: PaidService::class,cascade: ['persist'])]
     protected Collection $services;
 
 
