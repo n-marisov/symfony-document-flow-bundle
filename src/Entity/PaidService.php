@@ -2,52 +2,75 @@
 
 namespace Maris\Symfony\DocumentFlow\Entity;
 
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Embedded;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\Table;
+use Money\Currency;
+use Money\Money;
+
 /**
  * Сущность платной услуги.
  */
+#[Entity]
+#[Table(name: 'paid_services')]
 class PaidService
 {
     /**
      * Идентификатор.
      * @var int|null
      */
+    #[Id,GeneratedValue]
+    #[Column(options: ['unsigned'=>true])]
     private ?int $id = null;
 
     /**
      * Акт выполненных работ
      * @var AcceptanceCertificate|null
      */
+    #[ManyToOne(targetEntity: AcceptanceCertificate::class,cascade: ['persists'])]
+    #[JoinColumn(name: 'certificate_id')]
     private ?AcceptanceCertificate $certificate = null;
 
     /**
      * Счет-фактура.
      * @var PaymentInvoice|null
      */
+    #[ManyToOne(targetEntity: PaymentInvoice::class,cascade: ['persists'])]
+    #[JoinColumn(name: 'invoice_id')]
     private ?PaymentInvoice $invoice = null;
 
     /**
      * Основание для оплаты.
      * @var string
      */
+    #[Column(name: 'basis', type: 'text', nullable: true)]
     private string $basis;
 
     /***
      * Количество оказанных услуг.
      * @var positive-int
      */
+    #[Column(name: 'quantity',type: 'smallint')]
     private int $quantity = 1;
 
     /***
      * Единица измерения
      * @var string
      */
+    #[Column(name: 'unit')]
     private string $unit;
 
     /***
      * Цена за 1 единицу.
-     * @var float
+     * @var Money
      */
-    private float $price;
+    #[Embedded(class: Money::class)]
+    private Money $price;
 
     /**
      * Устанавливает основание для оплаты.
@@ -84,10 +107,10 @@ class PaidService
 
     /**
      * Устанавливает цену за одну услугу.
-     * @param float $price
+     * @param Money $price
      * @return $this
      */
-    public function setPrice(float $price): self
+    public function setPrice( Money $price ): self
     {
         $this->price = $price;
         return $this;
@@ -155,9 +178,9 @@ class PaidService
 
     /**
      * Возвращает цену за одну услугу.
-     * @return float
+     * @return Money
      */
-    public function getPrice(): float
+    public function getPrice(): Money
     {
         return $this->price;
     }
@@ -184,10 +207,19 @@ class PaidService
 
     /***
      * Возвращает сумму за количество услуг.
-     * @return float
+     * @return Money
      */
-    public function getSum():float
+    public function getTotal():Money
     {
-        return $this->getQuantity() * $this->getPrice();
+        return   $this->getPrice()->multiply( $this->getQuantity() );
+    }
+
+    /**
+     * Возвращает валюту в которой оплачивается услуга.
+     * @return Currency
+     */
+    public function getCurrency():Currency
+    {
+        return $this->price->getCurrency();
     }
 }

@@ -27,7 +27,7 @@
         <field name="unit"/>
 
         <!-- Цена за единицу услуги -->
-        <field name="price" type="decimal" precision="10" scale="2" />
+        <embedded name="price" class="Money\Money" />
 
         <!-- Акт выполненных работ -->
         <many-to-one field="certificate" target-entity="Maris\Symfony\DocumentFlow\Entity\AcceptanceCertificate">

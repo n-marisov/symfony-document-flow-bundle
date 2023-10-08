@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a0611a8c2b04333b209a19e261c35b8f",
+    "content-hash": "1b487355ed71283fd66951a612878cff",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -1195,6 +1195,68 @@
             "time": "2022-09-18T07:06:19+00:00"
         },
         {
+            "name": "headsnet/money-bundle",
+            "version": "v0.1.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/headsnet/money-bundle.git",
+                "reference": "01312af9bf1fda3e139a47b708b1d82c4c4d1004"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/headsnet/money-bundle/zipball/01312af9bf1fda3e139a47b708b1d82c4c4d1004",
+                "reference": "01312af9bf1fda3e139a47b708b1d82c4c4d1004",
+                "shasum": ""
+            },
+            "require": {
+                "moneyphp/money": "^3.3 || ^4.0",
+                "php": ">=7.4",
+                "symfony/framework-bundle": "^4.4 || ^5.0 || ^6.0"
+            },
+            "require-dev": {
+                "doctrine/doctrine-bundle": "^1.0 || ^2.0",
+                "phpstan/phpstan": "^1.8",
+                "phpunit/phpunit": "^8.0 || ^9.0",
+                "symfony/form": "^4.4 || ^5.0 || ^6.0",
+                "symfony/serializer": "^4.4 || ^5.0 || ^6.0",
+                "symfony/twig-bundle": "^4.4 || ^5.0 || ^6.0",
+                "symfony/validator": "^4.4 || ^5.0 || ^6.0",
+                "symplify/easy-coding-standard": "^11"
+            },
+            "suggest": {
+                "doctrine/doctrine-bundle": "Add a Money DBAL mapping type",
+                "symfony/form": "Add a data transformer",
+                "symfony/serializer": "Serialize/deserialize Money objects using Symfony library",
+                "symfony/twig-bundle": "Format and manipulate Money in Twig templates",
+                "symfony/validator": "Use custom validation constraints on Money objects"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Headsnet\\MoneyBundle\\": "src/",
+                    "Headsnet\\MoneyBundle\\Test\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Integrates moneyphp/money into your Symfony application",
+            "homepage": "https://github.com/headsnet/money-bundle",
+            "keywords": [
+                "bundle",
+                "money",
+                "money pattern",
+                "moneyphp",
+                "symfony"
+            ],
+            "support": {
+                "issues": "https://github.com/headsnet/money-bundle/issues",
+                "source": "https://github.com/headsnet/money-bundle/tree/v0.1.11"
+            },
+            "time": "2023-08-28T15:15:07+00:00"
+        },
+        {
             "name": "maennchen/zipstream-php",
             "version": "3.1.0",
             "source": {
@@ -1357,16 +1419,16 @@
         },
         {
             "name": "maris/symfony-address-bundle",
-            "version": "0.0.3",
+            "version": "0.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/n-marisov/symfony-address-bundle.git",
-                "reference": "3bfb68089350ec2ed060575865346bb273634c1a"
+                "reference": "3dd2e97969a900601600a9aa47546d201a66d419"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/n-marisov/symfony-address-bundle/zipball/3bfb68089350ec2ed060575865346bb273634c1a",
-                "reference": "3bfb68089350ec2ed060575865346bb273634c1a",
+                "url": "https://api.github.com/repos/n-marisov/symfony-address-bundle/zipball/3dd2e97969a900601600a9aa47546d201a66d419",
+                "reference": "3dd2e97969a900601600a9aa47546d201a66d419",
                 "shasum": ""
             },
             "require": {
@@ -1395,9 +1457,9 @@
             "description": "Пакет добавляет возможность сохранения адресов.",
             "support": {
                 "issues": "https://github.com/n-marisov/symfony-address-bundle/issues",
-                "source": "https://github.com/n-marisov/symfony-address-bundle/tree/v0.0.3"
+                "source": "https://github.com/n-marisov/symfony-address-bundle/tree/v0.0.4"
             },
-            "time": "2023-10-07T18:37:28+00:00"
+            "time": "2023-10-08T09:47:51+00:00"
         },
         {
             "name": "maris/symfony-company-bundle",
@@ -1649,6 +1711,95 @@
                 "source": "https://github.com/MarkBaker/PHPMatrix/tree/3.0.1"
             },
             "time": "2022-12-02T22:17:43+00:00"
+        },
+        {
+            "name": "moneyphp/money",
+            "version": "v4.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/moneyphp/money.git",
+                "reference": "f660ab7f1d7a4c2ffdd30f50c55ed2c95c26fc3f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/moneyphp/money/zipball/f660ab7f1d7a4c2ffdd30f50c55ed2c95c26fc3f",
+                "reference": "f660ab7f1d7a4c2ffdd30f50c55ed2c95c26fc3f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-bcmath": "*",
+                "ext-filter": "*",
+                "ext-json": "*",
+                "php": "~8.0.0 || ~8.1.0 || ~8.2.0"
+            },
+            "require-dev": {
+                "cache/taggable-cache": "^1.1.0",
+                "doctrine/coding-standard": "^9.0",
+                "doctrine/instantiator": "^1.4.0",
+                "ext-gmp": "*",
+                "ext-intl": "*",
+                "florianv/exchanger": "^2.6.3",
+                "florianv/swap": "^4.3.0",
+                "moneyphp/crypto-currencies": "^1.0.0",
+                "moneyphp/iso-currencies": "^3.2.1",
+                "php-http/message": "^1.11.0",
+                "php-http/mock-client": "^1.4.1",
+                "phpbench/phpbench": "^1.2.5",
+                "phpspec/phpspec": "^7.3",
+                "phpunit/phpunit": "^9.5.4",
+                "psalm/plugin-phpunit": "^0.18.4",
+                "psr/cache": "^1.0.1",
+                "vimeo/psalm": "~5.3.0"
+            },
+            "suggest": {
+                "ext-gmp": "Calculate without integer limits",
+                "ext-intl": "Format Money objects with intl",
+                "florianv/exchanger": "Exchange rates library for PHP",
+                "florianv/swap": "Exchange rates library for PHP",
+                "psr/cache-implementation": "Used for Currency caching"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Money\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mathias Verraes",
+                    "email": "mathias@verraes.net",
+                    "homepage": "http://verraes.net"
+                },
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com"
+                },
+                {
+                    "name": "Frederik Bosch",
+                    "email": "f.bosch@genkgo.nl"
+                }
+            ],
+            "description": "PHP implementation of Fowler's Money pattern",
+            "homepage": "http://moneyphp.org",
+            "keywords": [
+                "Value Object",
+                "money",
+                "vo"
+            ],
+            "support": {
+                "issues": "https://github.com/moneyphp/money/issues",
+                "source": "https://github.com/moneyphp/money/tree/v4.2.0"
+            },
+            "time": "2023-08-16T14:31:24+00:00"
         },
         {
             "name": "phpoffice/phpspreadsheet",
