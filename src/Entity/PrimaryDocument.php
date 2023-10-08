@@ -218,7 +218,7 @@ abstract class PrimaryDocument
     public function getTotal():Money
     {
         return $this->getServices()
-            ->reduce( fn( PaidService $carry, PaidService $item) => $carry->getTotal()->add( $item->getTotal() ));
+            ->reduce( fn( PaidService $accumulator , PaidService $item) => $accumulator->getTotal()->add( $item->getTotal() ), new Money(0,$this->currency));
     }
 
 }
