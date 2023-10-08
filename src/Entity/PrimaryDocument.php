@@ -91,6 +91,14 @@ abstract class PrimaryDocument
     //#[Column(name: 'currency',type: 'currency')] ???
     protected ?Currency $currency = null;
 
+    /**
+     * @param Currency|null $currency
+     */
+    public function __construct(?Currency $currency)
+    {
+        $this->currency = $currency;
+    }
+
 
     /**
      * @return int|null
