@@ -23,7 +23,7 @@ class CurrencyFullPredicate
         $this->firstCurrency = $firstCurrency;
     }
 
-    public function __invoke( PaidService $service ):bool
+    public function __invoke( int $position, PaidService $service ):bool
     {
         return $this->firstCurrency->equals( $service->getCurrency() );
     }
