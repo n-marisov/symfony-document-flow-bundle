@@ -5,31 +5,28 @@ namespace Maris\Symfony\DocumentFlow\Entity;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\DiscriminatorColumn;
-use Doctrine\ORM\Mapping\DiscriminatorMap;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
-use Doctrine\ORM\Mapping\InheritanceType;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
-use Maris\Symfony\Company\Entity\Business;
+use Maris\Symfony\Company\Entity\BankAccount;
+use Maris\Symfony\Company\Entity\Business\Business;
 use Maris\Symfony\DocumentFlow\Predicate\CurrencyFullPredicate;
+use Maris\Symfony\DocumentFlow\Predicate\PaidServicesMoneyTotalPredicate;
 use Money\Currency;
 use Money\Money;
 use RuntimeException;
 
 /***
  * Любой первичный документ.
+ * Акт выполненных работ или счет на оплату.
  */
 #[Entity]
 #[Table(name: 'primary_documents')]
-#[InheritanceType('SINGLE_TABLE')]
-#[DiscriminatorColumn(name: 'document_type',type: 'integer')]
-#[DiscriminatorMap([ PrimaryDocument::class ,AcceptanceCertificate::class, PaymentInvoice::class ])]
-abstract class PrimaryDocument
+class PrimaryDocument
 {
     /***
      * Идентификатор.
@@ -80,12 +77,21 @@ abstract class PrimaryDocument
      * Список оказанных услуг.
      * @var Collection<PaidService>
      */
+    #[OneToMany(mappedBy: 'certificate', targetEntity: PaidService::class, cascade: ['persist'])]
     protected Collection $services;
+
+    /**
+     * Реквизиты исполнителя.
+     * @var BankAccount
+     */
+    #[ManyToOne( targetEntity: BankAccount::class, cascade: ['persist']) ]
+    private BankAccount $bankAccount;
 
 
     /**
      * Валюта в которой указаны деньги.
      * Необязательно хранить в БД.
+     * Можно вычислить исходя из валюты услуги.
      * @var Currency|null
      */
     //#[Column(name: 'currency',type: 'currency')] ???
@@ -94,7 +100,7 @@ abstract class PrimaryDocument
     /**
      * @param Currency|null $currency
      */
-    public function __construct(?Currency $currency)
+    public function __construct( ?Currency $currency = null )
     {
         $this->currency = $currency;
     }
@@ -225,8 +231,10 @@ abstract class PrimaryDocument
      */
     public function getTotal():Money
     {
-        return $this->getServices()
-            ->reduce( fn( Money $accumulator , PaidService $item) => $accumulator->add( $item->getTotal() ), new Money(0,$this->currency));
+        return $this->getServices()->reduce(
+            (new PaidServicesMoneyTotalPredicate())(...),
+            new Money(0,$this->currency)
+        );
     }
 
 }

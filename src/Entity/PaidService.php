@@ -30,19 +30,11 @@ class PaidService
 
     /**
      * Акт выполненных работ
-     * @var AcceptanceCertificate|null
+     * @var PrimaryDocument|null
      */
-    #[ManyToOne(targetEntity: AcceptanceCertificate::class,cascade: ['persist'])]
+    #[ManyToOne(targetEntity: PrimaryDocument::class,cascade: ['persist'])]
     #[JoinColumn(name: 'certificate_id')]
-    private ?AcceptanceCertificate $certificate = null;
-
-    /**
-     * Счет-фактура.
-     * @var PaymentInvoice|null
-     */
-    #[ManyToOne(targetEntity: PaymentInvoice::class,cascade: ['persist'])]
-    #[JoinColumn(name: 'invoice_id')]
-    private ?PaymentInvoice $invoice = null;
+    private ?PrimaryDocument $certificate = null;
 
     /**
      * Основание для оплаты.
@@ -118,10 +110,10 @@ class PaidService
 
     /**
      * Устанавливает акт выполненных работ.
-     * @param AcceptanceCertificate|null $certificate
+     * @param PrimaryDocument|null $certificate
      * @return $this
      */
-    public function setCertificate(?AcceptanceCertificate $certificate): self
+    public function setCertificate(?PrimaryDocument $certificate): self
     {
         $this->certificate = $certificate;
         return $this;
@@ -129,10 +121,10 @@ class PaidService
 
     /**
      * Устанавливает счет-фактуру.
-     * @param PaymentInvoice|null $invoice
+     * @param PrimaryDocument|null $invoice
      * @return $this
      */
-    public function setInvoice(?PaymentInvoice $invoice): self
+    public function setInvoice(?PrimaryDocument $invoice): self
     {
         $this->invoice = $invoice;
         return $this;
@@ -187,18 +179,18 @@ class PaidService
 
     /**
      * Возвращает акт выполненных работ.
-     * @return AcceptanceCertificate|null
+     * @return PrimaryDocument|null
      */
-    public function getCertificate(): ?AcceptanceCertificate
+    public function getCertificate(): ?PrimaryDocument
     {
         return $this->certificate;
     }
 
     /**
      * Возвращает счет-фактуру.
-     * @return PaymentInvoice|null
+     * @return PrimaryDocument|null
      */
-    public function getInvoice(): ?PaymentInvoice
+    public function getInvoice(): ?PrimaryDocument
     {
         return $this->invoice;
     }

@@ -6,3 +6,39 @@ services:
   _defaults:
     autowire: true      # Automatically injects dependencies in your services.
     autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+
+  # Форматирование чисел по умолчанию
+  NumberFormatter:
+    arguments:
+      $locale: '%kernel.default_locale%'
+      $pattern: !php/const  'NumberFormatter::CURRENCY'
+
+  # Источник валют.
+  Money\Currencies\ISOCurrencies: ~
+  Money\Currencies: '@Money\Currencies\ISOCurrencies'
+
+
+
+  # Валюта по умолчанию.
+  Money\Currency:
+    arguments:
+      $code: "RUB"
+
+
+  Money\Formatter\IntlMoneyFormatter:
+    arguments:
+      $formatter: '@NumberFormatter'
+      $currencies: '@Money\Currencies'
+
+
+  # Интерфейс форматирования валюты.
+  Money/MoneyFormatter: '@Money\Formatter\IntlMoneyFormatter'
+
+
+
+  # Фабрика создания денежных единиц.
+  Maris\Symfony\DocumentFlow\Factory\MoneyFactory:
+    arguments:
+      $currency: '@Money\Currency'
+

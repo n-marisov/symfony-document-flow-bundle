@@ -13,12 +13,17 @@ class MoneyFactory
     protected Currency $currency;
 
     /**
+     * @param Currency $currency
+     */
+    public function __construct( Currency $currency )
+    {
+        $this->currency = $currency;
+    }
+
+    /**
      * @param string $currencyCode
      */
-    public function __construct( string $currencyCode = "RUB")
-    {
-        $this->currency = new Currency( $currencyCode );
-    }
+
 
     /***
      * Создает объект Money из атомарных
