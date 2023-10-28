@@ -23,11 +23,7 @@
     "symfony/translation": "*",
     "phpoffice/phpspreadsheet": "1.29.0",
     "headsnet/money-bundle": "*",
-    "maris/symfony-company-bundle": "0.*",
-    "alhimik1986/php-excel-templator": "*",
-    "recranet/twig-spreadsheet-bundle": "*",
-    "mpdf/mpdf": "*",
-    "dompdf/dompdf": "*"
+    "maris/symfony-company-bundle": "0.*"
   },
   "autoload": {
     "psr-4": {
